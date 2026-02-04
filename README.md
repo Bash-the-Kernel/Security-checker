@@ -3,8 +3,8 @@
 Security Checker is a lightweight web app for scanning code snippets and documenting common security risks. Paste in Python or JavaScript code, and it will flag risky patterns with severity ratings and suggested fixes.
 
 ## Features
-- Scan Python and JavaScript snippets for OWASP Top 10 (2025) inspired patterns.
-- Visual report summary with severity counts and OWASP category coverage.
+- Scan Python and JavaScript snippets for common vulnerability patterns.
+- Visual report summary with severity counts.
 - Documented findings with remediation guidance.
 
 ## Getting started
