@@ -46,6 +46,23 @@
           <p class="summary-label">Medium severity</p>
           <p class="summary-value medium">{{ summary.medium }}</p>
         </div>
+        <div>
+          <p class="summary-label">Low severity</p>
+          <p class="summary-value low">{{ summary.low }}</p>
+        </div>
+      </div>
+
+      <div class="owasp-summary">
+        <h3>OWASP Top 10 coverage</h3>
+        <div class="owasp-grid">
+          {% for item in owasp_summary %}
+          <div class="owasp-card">
+            <p class="owasp-id">{{ item.owasp_id }}</p>
+            <p class="owasp-title">{{ item.owasp_title }}</p>
+            <p class="owasp-count">{{ item.count }} finding{% if item.count != 1 %}s{% endif %}</p>
+          </div>
+          {% endfor %}
+        </div>
       </div>
 
       {% if findings %}
@@ -56,7 +73,7 @@
             <span class="badge {{ finding.severity|lower }}">{{ finding.severity }}</span>
             <div>
               <h3>{{ finding.title }}</h3>
-              <p class="finding-meta">Rule {{ finding.rule_id }} · Line {{ finding.line }}</p>
+              <p class="finding-meta">Rule {{ finding.rule_id }} · {{ finding.owasp_id }} {{ finding.owasp_title }} · Line {{ finding.line }}</p>
             </div>
           </div>
           <p>{{ finding.description }}</p>

@@ -113,6 +113,45 @@ button:hover {
   color: #d07a2c;
 }
 
+.summary-value.low {
+  color: #2a7b4f;
+}
+
+.owasp-summary {
+  margin-bottom: 24px;
+}
+
+.owasp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.owasp-card {
+  border: 1px solid #ececf6;
+  border-radius: 12px;
+  padding: 12px;
+  background: #fdfdff;
+}
+
+.owasp-id {
+  margin: 0;
+  font-weight: 700;
+  color: #2f5bf0;
+}
+
+.owasp-title {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: #4a4a5f;
+}
+
+.owasp-count {
+  margin: 8px 0 0;
+  font-weight: 600;
+}
+
 .findings {
   display: flex;
   flex-direction: column;
