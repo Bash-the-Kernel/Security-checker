@@ -54,6 +54,12 @@ body {
   gap: 12px;
 }
 
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 label {
   font-weight: 600;
 }
@@ -85,6 +91,16 @@ button {
 
 button:hover {
   background: #2143c8;
+}
+
+.button-secondary {
+  background: #eef1ff;
+  color: #2f5bf0;
+  border: 1px solid #cad4ff;
+}
+
+.button-secondary:hover {
+  background: #dbe2ff;
 }
 
 .summary {

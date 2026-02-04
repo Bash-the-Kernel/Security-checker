@@ -27,7 +27,11 @@
         <label for="code">Code snippet</label>
         <textarea id="code" name="code" placeholder="Paste or type code here...">{{ code }}</textarea>
 
-        <button type="submit">Scan for issues</button>
+        <div class="button-row">
+          <button type="submit">Scan for issues</button>
+          <button type="submit" class="button-secondary" formaction="/export/json">Export JSON</button>
+          <button type="submit" class="button-secondary" formaction="/export/markdown">Export Markdown</button>
+        </div>
       </form>
     </section>
 

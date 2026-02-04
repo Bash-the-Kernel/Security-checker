@@ -1,0 +1,25 @@
+# Security Checker Report
+
+**Language:** {{ language }}
+**Total findings:** {{ summary.total }}
+**High:** {{ summary.high }} · **Medium:** {{ summary.medium }} · **Low:** {{ summary.low }}
+
+## OWASP Top 10 Coverage
+{% for item in owasp_summary %}
+- **{{ item.owasp_id }} {{ item.owasp_title }}:** {{ item.count }} finding{% if item.count != 1 %}s{% endif %}
+{% endfor %}
+
+{% if findings %}
+## Findings
+{% for finding in findings %}
+### {{ finding.title }} ({{ finding.rule_id }})
+- **OWASP:** {{ finding.owasp_id }} {{ finding.owasp_title }}
+- **Severity:** {{ finding.severity }}
+- **Line:** {{ finding.line }}
+- **Description:** {{ finding.description }}
+- **Suggested fix:** {{ finding.suggestion }}
+
+{% endfor %}
+{% else %}
+No issues detected.
+{% endif %}
