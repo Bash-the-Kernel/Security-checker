@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Security Checker</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <div>
+        <p class="tag">Security Checker</p>
+        <h1>Find vulnerabilities, document fixes, ship safer code.</h1>
+        <p class="subtitle">Paste code below to scan for common security patterns. The report highlights risks and suggests safer alternatives.</p>
+      </div>
+    </header>
+
+    <section class="panel">
+      <form method="post" class="scan-form">
+        <label for="language">Language</label>
+        <select id="language" name="language">
+          <option value="python" {% if language == 'python' %}selected{% endif %}>Python</option>
+          <option value="javascript" {% if language == 'javascript' %}selected{% endif %}>JavaScript</option>
+        </select>
+
+        <label for="code">Code snippet</label>
+        <textarea id="code" name="code" placeholder="Paste or type code here...">{{ code }}</textarea>
+
+        <button type="submit">Scan for issues</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Report summary</h2>
+      <div class="summary">
+        <div>
+          <p class="summary-label">Total findings</p>
+          <p class="summary-value">{{ summary.total }}</p>
+        </div>
+        <div>
+          <p class="summary-label">High severity</p>
+          <p class="summary-value high">{{ summary.high }}</p>
+        </div>
+        <div>
+          <p class="summary-label">Medium severity</p>
+          <p class="summary-value medium">{{ summary.medium }}</p>
+        </div>
+        <div>
+          <p class="summary-label">Low severity</p>
+          <p class="summary-value low">{{ summary.low }}</p>
+        </div>
+      </div>
+
+      <div class="owasp-summary">
+        <h3>OWASP Top 10 coverage</h3>
+        <div class="owasp-grid">
+          {% for item in owasp_summary %}
+          <div class="owasp-card">
+            <p class="owasp-id">{{ item.owasp_id }}</p>
+            <p class="owasp-title">{{ item.owasp_title }}</p>
+            <p class="owasp-count">{{ item.count }} finding{% if item.count != 1 %}s{% endif %}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      {% if findings %}
+      <div class="findings">
+        {% for finding in findings %}
+        <article class="finding">
+          <div class="finding-header">
+            <span class="badge {{ finding.severity|lower }}">{{ finding.severity }}</span>
+            <div>
+              <h3>{{ finding.title }}</h3>
+              <p class="finding-meta">Rule {{ finding.rule_id }} · {{ finding.owasp_id }} {{ finding.owasp_title }} · Line {{ finding.line }}</p>
+            </div>
+          </div>
+          <p>{{ finding.description }}</p>
+          <p class="suggestion"><strong>Suggested fix:</strong> {{ finding.suggestion }}</p>
+        </article>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="empty-state">No issues detected yet. Run a scan to populate the report.</p>
+      {% endif %}
+    </section>
+
+    <section class="panel">
+      <h2>How this works</h2>
+      <ol class="steps">
+        <li>We match your code against common vulnerability patterns.</li>
+        <li>Each match is documented with severity and guidance.</li>
+        <li>Share the report to drive remediation work.</li>
+      </ol>
+    </section>
+  </main>
+</body>
+</html>
